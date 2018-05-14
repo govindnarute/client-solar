@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt10">
+  <div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+
+    <button class="btn btn-success float-sm-right" data-toggle="modal" data-target="#exampleModal" >Add Customer</button>
+
+  </div>
+  </div>
+</div>
+
+
+<div class="container-fluid mt10">
+  <div class="row">
+    <div class="col-sm-12">
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Mobile </th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of customers">
+        <td>{{i.firstName}}</td>
+        <td>{{i.lastName}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.address}}</td>
+        <td><button class="btn btn-primary">Edit</button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteCustomer" (click)="setCustID(i._id)">Delete</button>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+  <div class="form-group">
+    <label for="exampleFormControlInput1">First Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="firstName" placeholder="First Name">
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Last Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="lastName" placeholder="Last Name">
+  </div>
+  
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Email</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="email" placeholder="name@example.com">
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Mobile No</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="mobile" placeholder="Mobile No">
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Address</label>
+    <textarea class="form-control" id="Address" placeholder="Address" [(ngModel)]="address" rows="3"></textarea>
+  </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addCustomer()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <p>Do you want to delete Customer</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="deleteCustomer()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
