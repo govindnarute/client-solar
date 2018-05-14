@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from "../services/customers.service";
+import { saveAs } from 'file-saver/FileSaver';
+import { FileSaverService } from 'ngx-filesaver';
+
+
 
 @Component({
   selector: 'app-customers',
@@ -16,7 +20,8 @@ email:string;
 customers:any;
 custId:any;
 
-  constructor(private customersService: CustomersService ) { }
+  constructor(private customersService: CustomersService,
+   private fileSaverService: FileSaverService ) { }
 
   ngOnInit() {
     this.getCustomers();
@@ -50,6 +55,17 @@ deleteCustomer(id){
   this.customersService.deleteCustomer(this.custId).subscribe(res=>{
     
   })
+}
+
+downloadPdf(){
+  this.customersService.downloadPdf().subscribe(res=>{
+  
+   
+    this.fileSaverService.save((<any>res)._body, "test.pdf");
+  // saveAs((<any>res).data.data,"test.pdf");
+   // this._FileSaverService.save((<any>res)._body,"test.pdf");
+  })
+
 }
 
 }

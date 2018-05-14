@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, } from "@angular/common/http";
+
+import { Http, Headers, RequestOptions, ResponseContentType } from '@angular/http';
 
 @Injectable()
 export class CustomersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _http:Http) { }
 
 
   saveCustomer(firstName,lastName,mobile,email,address){
@@ -22,7 +24,16 @@ export class CustomersService {
   deleteCustomer(id){
     return this.http.delete("http://localhost:3000/api/customers/"+id,{})
   }
-
+ downloadPdf(){
+   let headers = new Headers({ 
+      'Content-Type': 'application/json', 
+      'Accept': 'application/pdf'
+     
+    });
+    let options = new RequestOptions({ headers: headers });        
+    options.responseType = ResponseContentType.Blob;
+    return this._http.get("http://localhost:3000/api/customers/pdf",options)
+  }
 
 
 }

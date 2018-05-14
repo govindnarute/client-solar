@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CustomersService } from "./services/customers.service";
 import { ProductComponent } from './product/product.component';
 import { ProductService } from "./services/product.service";
+import { FileSaverModule } from 'ngx-filesaver';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProductService } from "./services/product.service";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    FileSaverModule
   ],
   providers: [LoginService,CustomersService,ProductService],
   bootstrap: [AppComponent]
